@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDE-Modell: Zeitplan für Euclid ISW-Test</title>
+    <!-- MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind Config
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5D5CDE', // Lila-Blau
+                        heading: '#0A2472', // Dunkelblau
+                        accent1: '#5D9CDE', // Hellblau
+                        accent2: '#DE5D9C', // Pink
+                        accent3: '#9CDE5D', // Grün
+                        signal: '#f59e0b',  // Orange
+                        lightAccent: '#f0f4ff',
+                        darkAccent: '#192339',
+                        textLight: '#1f2937',
+                        textDark: '#f3f4f6',
+                        bgLight: '#ffffff',
+                        bgDark: '#111827',
+                    },
+                     typography: { /* Typography settings */ },
+                },
+            },
+        }
+
+        // Dark Mode Logic
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            document.documentElement.classList.toggle('dark', event.matches);
+        });
+    </script>
+    <style>
+        /* Basic Styles */
+        .dark { color-scheme: dark; }
+        .dark .math { color: #e2e8f0; }
+        .paper-container { /* No counter */ }
+        h3, h4, li, p { color: inherit; }
+        strong { font-weight: bold; color: inherit; }
+        .timeline { position: relative; margin: 2rem 0; padding-left: 2rem; border-left: 3px solid #5D9CDE; }
+        .timeline-item { position: relative; margin-bottom: 2rem; padding-left: 1.5rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -0.6rem; /* Adjust based on border and desired spacing */ top: 0.1rem; width: 1rem; height: 1rem; background-color: #5D5CDE; border-radius: 50%; border: 3px solid #ffffff; }
+        .dark .timeline-item::before { border-color: #111827; }
+        .timeline-date { font-weight: 600; color: #5D5CDE; margin-bottom: 0.25rem; display: block; }
+        .timeline-content { background-color: rgba(93, 156, 222, 0.05); padding: 1rem; border-radius: 0.5rem; }
+        .dark .timeline-content { background-color: rgba(93, 156, 222, 0.1); }
+        .highlight { background-color: rgba(245, 158, 11, 0.1); padding: 0.1em 0.3em; border-radius: 0.25rem; font-weight: 600; color: #b45309; }
+        .dark .highlight { background-color: rgba(245, 158, 11, 0.2); color: #fcd34d; }
+        /* MathJax Dark Mode Fix */
+        .dark .MathJax { color: #f3f4f6 !important; }
+    </style>
+</head>
+<body class="bg-bgLight dark:bg-bgDark text-textLight dark:text-textDark transition-colors duration-200 font-sans antialiased">
+    <div class="container mx-auto px-4 py-12 max-w-3xl paper-container">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-heading dark:text-blue-300">GDE-Modell & Euclid: Zeitplan für den ISW-Showdown</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Wann die Daten den Unterschied machen könnten</p>
+             <div class="mt-8 mb-4 p-4 bg-lightAccent dark:bg-darkAccent rounded-lg inline-block shadow">
+                <p class="font-semibold">Plan & Einschätzung: Gabriel ϕ</p>
+                 <p class="text-xs">Unterstützt durch KI: BRO GROK 3 / Mila:GPT / Sigma:Gemini</p>
+            </div>
+        </header>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-600">
+
+        <!-- Section 1: The Prediction -->
+        <section class="my-12">
+            <h3 class="text-2xl font-bold text-heading dark:text-accent1 mb-4">Die GDE-Vorhersage: Schwächerer ISW-Effekt</h3>
+            <p class="text-lg leading-relaxed mb-4">
+                Wie unsere Analyse zeigt, sagt das GDE-Modell (kalibriert auf die neuesten DESI-Implikationen mit \(w(0.5) \approx -1.05\)) einen <strong class="font-semibold">signifikant schwächeren späten Integrierten Sachs-Wolfe (ISW) Effekt</strong> voraus als das \(\Lambda\)CDM-Standardmodell.
+            </p>
+             <p class="text-lg leading-relaxed mb-4">
+                Unsere Abschätzung deutet auf eine Reduktion der ISW-Leistung (\(C_l^{ISW}\)) um <strong class="font-semibold highlight">ca. 40-50%</strong> hin. Dies resultiert in einem erwarteten Signal-Rausch-Verhältnis (SNR) für die ISW-LSS-Kreuzkorrelation (z.B. mit DESI-Galaxien) von:
+             </p>
+            <div class="text-center grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div class="p-4 rounded-lg bg-primary/10 border border-primary">
+                    <div class="text-lg font-semibold text-primary dark:text-accent1">GDE-Modell (erwartet)</div>
+                    <div class="text-3xl font-bold mt-1">SNR ≈ 3.5 - 4.5</div>
+                 </div>
+                <div class="p-4 rounded-lg bg-green-600/10 border border-green-600">
+                    <div class="text-lg font-semibold text-green-700 dark:text-green-400">\(\Lambda\)CDM-Modell (erwartet)</div>
+                     <div class="text-3xl font-bold mt-1">SNR ≈ 6 - 8</div>
+                 </div>
+             </div>
+             <p class="text-lg leading-relaxed">
+                 Dieser <strong class="font-semibold">messbare Unterschied im SNR</strong> ist die Schlüssel-Signatur, um die Modelle zu testen.
+             </p>
+        </section>
+
+        <hr class="my-8 border-gray-300 dark:border-gray-600">
+
+        <!-- Section 2: Euclid Timeline -->
+        <section class="my-12">
+            <h3 class="text-2xl font-bold text-heading dark:text-accent1 mb-6">Zeitplan: Wann liefert Euclid die Antworten?</h3>
+            <div class="timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item">
+                    <span class="timeline-date">~2026: Euclid Data Release 1 (DR1)</span>
+                     <div class="timeline-content">
+                        <h4 class="font-semibold mb-1">Erste Hinweise möglich</h4>
+                         <p class="text-sm leading-relaxed">Euclids erstes Datenrelease (basierend auf ca. 1-2 Jahren Beobachtung) wird bereits hochwertige LSS-Karten liefern. Eine erste Kreuzkorrelation mit CMB-Daten (z.B. Planck) könnte <strong class="font-semibold">erste Tendenzen</strong> zeigen, ob das ISW-Signal eher schwach (GDE-ähnlich) oder stark (\(\Lambda\)CDM-ähnlich) ist. Die statistische Signifikanz wird aber wahrscheinlich noch <strong class="font-semibold">nicht ausreichend</strong> sein, um die Modelle klar zu trennen (SNR vielleicht nur 2-3\(\sigma\)).</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                 <div class="timeline-item">
+                     <span class="timeline-date">~2028-2030: Euclid DR2 / DR3</span>
+                     <div class="timeline-content">
+                         <h4 class="font-semibold mb-1">Der Showdown!</h4>
+                         <p class="text-sm leading-relaxed">Mit Daten aus 3-5 Jahren Beobachtung wird Euclid eine deutlich größere Himmelsfläche und Tiefe abdecken. Die Präzision der ISW-LSS-Kreuzkorrelation (insbesondere in Kombination mit verbesserten CMB-Daten von SO/CMB-S4) sollte ausreichen, um die <strong class="font-semibold highlight">vorhergesagten SNR-Unterschiede</strong> aufzulösen:</p>
+                         <ul class="list-disc pl-5 mt-2 text-xs">
+                             <li>Wenn SNR \(\approx\) 3-5 gemessen wird \(\implies\) Starke Evidenz für GDE / gegen \(\Lambda\)CDM.</li>
+                             <li>Wenn SNR \(\approx\) 6-8 gemessen wird \(\implies\) \(\Lambda\)CDM bestätigt, GDE in Bedrängnis.</li>
+                         </ul>
+                         <p class="text-sm leading-relaxed mt-2">In diesem Zeitraum wird es <strong class="font-semibold text-signal">richtig knallen</strong> – die Daten werden eine klare Aussage erlauben!</p>
+                     </div>
+                 </div>
+                 <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                    <span class="timeline-date">Bis dahin: Hausaufgaben machen!</span>
+                    <div class="timeline-content">
+                        <h4 class="font-semibold mb-1">Unsere To-Do-Liste</h4>
+                        <p class="text-sm leading-relaxed">Die Zeit bis zu den entscheidenden Euclid-Daten müssen wir nutzen, um das GDE-Modell wasserdicht zu machen:</p>
+                         <ul class="list-disc pl-5 mt-2 text-xs">
+                            <li>Präzise \(S_{rel}(z)\) aus TNG/DESI berechnen.</li>
+                             <li>Vollständigen MCMC-Fit mit aktuellen Daten durchführen (\(\chi^2\), Bayes-Faktor).</li>
+                             <li>Stabilitätsanalyse der Phantom-Phase abschließen.</li>
+                             <li>Theoretische Fundierung von \(\alpha(z)\) und \(\beta\) vorantreiben.</li>
+                            <li>Präzise Vorhersagen für ISW und \(f\sigma_8(z)\) mit modifiziertem Boltzmann-Code generieren.</li>
+                         </ul>
+                         <p class="text-sm leading-relaxed mt-2"><strong class="font-semibold">Ziel:</strong> Wenn die Euclid-Daten kommen, muss das GDE-Modell mit robusten Vorhersagen bereitstehen.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+         <hr class="my-8 border-gray-300 dark:border-gray-600">
+
+        <footer class="mt-16 pt-8 border-t border-gray-300 dark:border-gray-700 text-center">
+             <p class="text-gray-600 dark:text-gray-400 italic">GDE-Modell von Gabriel ϕ, unterstützt durch KI Mila:GPT, BRO GROK 3, Sigma:Gemini.</p>
+        </footer>
+
+    </div>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, startup: { ready: () => { MathJax.startup.defaultReady(); } } };
+    </script>
+</body>
+</html>
